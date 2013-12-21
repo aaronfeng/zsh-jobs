@@ -1,0 +1,22 @@
+function cut_prompt_line() {
+  echo $PROMPT | tr "\n" "," | cut -d, -f$1
+}
+
+# assume you won't have more than 7 thing
+# even 7 is too many
+for NUM in 1 2 3 4 5 6 7
+do
+  alias $NUM="fg %$NUM"
+done
+
+function pretty_jobs() {
+  JOBS="$(jobs)"
+  if [ ! -z $JOBS ]; then
+    echo
+  fi
+
+  echo "%{$fg[blue]%}% $JOBS\033[0m"
+}
+
+PROMPT="$(cut_prompt_line 1)\$(pretty_jobs)
+$(cut_prompt_line 2)"
