@@ -11,7 +11,7 @@ done
 
 function pretty_jobs() {
   JOBS="$(jobs)"
-  if [ ! -z $JOBS ]; then
+  if [[ ! -z $JOBS ]]; then
     echo
   fi
 
